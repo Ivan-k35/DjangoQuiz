@@ -4,6 +4,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path('', views.QuizListView, name='home' ),
-    path('quiz/', views.quiz_view, name='quiz')
+    path('', views.CategoryListView.as_view(), name='home'),
+    path('quiz/', views.QuizListView.as_view(), name='quiz_list'),
+    path('quiz/<pk>/', views.quiz_view, name='quiz'),
 ]
