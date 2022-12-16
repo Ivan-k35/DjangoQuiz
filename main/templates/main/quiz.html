@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
-Quiz
+{{ obj.name }}
 {% endblock title %}
 
 {% block content %}
-<h1>Quiz: {{obj.name}}</h1>
+<div class="container mt-3 pt-2">
+    <h1>Quiz: {{obj.name}}</h1>
+</div>
 {% endblock content %}
+
+{% block scripts %}
+    <script src="{% static 'js/quiz.js' %}"></script>
+{% endblock scripts %}

@@ -1,31 +1,29 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Главная страница
+Список тестов
 {% endblock title %}
 
 {% block content %}
-<h1>Hello from Category</h1>
-{% for question in quizes.question_set.all %}
-    <h2>{{ question }}</h2>
-    {% for answer in question.answer_set.all %}
-        <h2>{{ answer }}</h2>
-    {% endfor %}
-{% endfor %}
-<!--<div class="container mt-5 pt-5">-->
-<!--    <div class="col-md-6 mx-auto">-->
-<!--        <form>-->
-<!--            <div class="form-group">-->
-<!--                <lebel>Выберите категорию:</lebel>-->
-<!--                <select name="category" class="form-control mt-2 ">-->
-<!--                    <option value="Choose">Выбор категории</option>-->
-<!--                    {% for category in categories %}-->
-<!--                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>-->
-<!--                    {% endfor %}-->
-<!--                </select>-->
-<!--            </div>-->
-<!--            <button class="btn btn-danger mt-3">Submit</button>-->
-<!--        </form>-->
-<!--    </div>-->
-<!--</div>-->
+<div class="container mt-3 pt-3">
+    <div class="col-md-12 mx-auto">
+        <section>
+            <h4>Список тестов: </h4>
+            {% for quiz in quizes %}
+            <br>
+            <div class="card text-center">
+                <div class="card-header">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title mt-1 pt-1">Категория: {{ quiz.category }}</h5>
+                    <h5 class="card-title mt-1 pt-1">Название теста: {{ quiz.name }}</h5>
+                    <a href="{% url 'quiz' quiz.pk %}" class="btn btn-primary mt-1 pt-1">Перейти к тесту</a>
+                </div>
+                <div class="card-footer text-muted">
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+    </div>
+</div>
 {% endblock content %}
