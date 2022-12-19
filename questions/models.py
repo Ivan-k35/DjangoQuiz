@@ -1,6 +1,7 @@
 from django.db import models
 from main.models import Quiz
 from django.contrib.auth.admin import User
+import random
 
 
 class Question(models.Model):
@@ -11,7 +12,9 @@ class Question(models.Model):
         return self.text
 
     def get_answers(self):
-        return self.answer_set.all()
+        answers = list(self.answer_set.all())
+        random.shuffle(answers)
+        return answers
 
     class Meta:
         verbose_name = 'Вопрос'
