@@ -41,6 +41,9 @@ def quiz_date_view(request, pk):
         for a in q.get_answers():
             answers.append(a.text)
         questions.append({str(q): answers})
-    return JsonResponse({
-        'data': questions
-    })
+    return JsonResponse({'data': questions})
+
+
+def save_quiz_view(request, pk):
+    print(request.POST)
+    return JsonResponse({'text': 'works'})
