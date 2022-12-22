@@ -5,9 +5,13 @@ from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 
 
+def index(request):
+    return render(request, 'main/index.html', {'title': 'Главная страница'})
+
+
 class CategoryListView(ListView):
     model = Category
-    template_name = 'main/index.html'
+    template_name = 'main/category.html'
     context_object_name = 'categories'
     allow_empty = False
 
