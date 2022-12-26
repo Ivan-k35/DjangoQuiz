@@ -15,11 +15,6 @@ class CategoryListView(ListView):
     context_object_name = 'categories'
     allow_empty = False
 
-    def get(self, *args, **kwargs):
-        if self.request.GET.get('category') and self.request.GET.get('category') != 'Choose':
-            return redirect(f"/quiz/?category={self.request.GET.get('category')}")
-        return super(CategoryListView, self).get(*args, **kwargs)
-
 
 class QuizListView(ListView):
     model = Quiz
@@ -28,7 +23,7 @@ class QuizListView(ListView):
     allow_empty = False
 
     def get_queryset(self):
-        return Quiz.objects.filter(category__category_name=self.request.GET.get('category'))
+        return Quiz.objects.filter(category_id=self.kwargs['pk'])
 
 
 def quiz_view(request, pk):

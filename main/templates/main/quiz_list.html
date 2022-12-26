@@ -8,15 +8,15 @@
 <div class="container mt-3 pt-3">
     <div class="col-md-12 mx-auto">
         <section>
-            <h4>Список тестов: </h4>
+            <h4 class="fw-light">Список тестов: </h4>
             {% for quiz in quizes %}
             <br>
             <div class="card text-center">
                 <div class="card-header">
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title mt-1 pt-1">Категория: {{ quiz.category }}</h5>
-                    <h5 class="card-title mt-1 pt-1">Название теста: {{ quiz.name }}</h5>
+                    <h4 class="card-title mt-1 pt-1 fw-light">Категория: {{ quiz.category }}</h4>
+                    <h4 class="card-title mt-1 pt-1 fw-light">Название теста: {{ quiz.name }}</h4>
                     <a href="{% url 'quiz' quiz.pk %}" class="btn btn-primary mt-1 pt-1">Перейти к тесту</a>
                 </div>
                 <div class="card-footer text-muted">
