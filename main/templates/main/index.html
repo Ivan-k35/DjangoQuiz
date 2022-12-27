@@ -1,20 +1,29 @@
 {% extends 'base.html' %}
 
 {% block title %}
-{{ title }}
+    {{ title }}
 {% endblock title %}
 
+{% block nav-link-home %}
+    class="nav-link active"
+{% endblock %}
+
+{% block nav-link-category %}
+    class="nav-link"
+{% endblock %}
+
+
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-lg-6">
-            <h1 class="mt-4 fw-light">Приложение для выполнения тестового задания</h1>
-            <p class="lead text-muted">
-                Простой сервис для провдения тестирования по различным темам. Тесты с различными вариантами
-                ответов, один или несколько вариантов должны быть правильными. Тесты группируются
-                в наборы тестов, которые пользователь может проходить и видеть свой результат.
-            </p>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h1 class="mt-4 fw-light">Приложение для выполнения тестового задания</h1>
+                <p class="lead text-muted">
+                    Простой сервис для провдения тестирования по различным темам. Тесты с различными вариантами
+                    ответов, один или несколько вариантов должны быть правильными. Тесты группируются
+                    в наборы тестов, которые пользователь может проходить и видеть свой результат.
+                </p>
+            </div>
         </div>
     </div>
-</div>
 {% endblock content %}
