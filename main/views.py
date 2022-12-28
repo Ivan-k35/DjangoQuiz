@@ -16,6 +16,7 @@ class CategoryListView(ListView):
     allow_empty = False
 
 
+
 class QuizListView(ListView):
     model = Quiz
     template_name = 'main/quiz_list.html'

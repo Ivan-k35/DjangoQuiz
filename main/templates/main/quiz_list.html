@@ -1,29 +1,59 @@
-{% extends 'base.html' %}
+{% extends 'main/category.html' %}
 
 {% block title %}
-Список тестов
+    Список тестов
 {% endblock title %}
 
 {% block content %}
-<div class="container mt-3 pt-3">
-    <div class="col-md-12 mx-auto">
-        <section>
-            <h4 class="fw-light">Список тестов: </h4>
-            {% for quiz in quizes %}
-            <br>
-            <div class="card text-center">
-                <div class="card-header">
-                </div>
-                <div class="card-body">
-                    <h4 class="card-title mt-1 pt-1 fw-light">Категория: {{ quiz.category }}</h4>
-                    <h4 class="card-title mt-1 pt-1 fw-light">Название теста: {{ quiz.name }}</h4>
-                    <a href="{% url 'quiz' quiz.pk %}" class="btn btn-primary mt-1 pt-1">Перейти к тесту</a>
-                </div>
-                <div class="card-footer text-muted">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-lg-3">
+                <h3 class="my-4 fw-light">Категории тестов</h3>
+                <div class="list-group">
+                    <a href="{% url 'main:category' %}" class="list-group-item link">Все категории</a>
+                    {% for category in categories %}
+                        <a href="{{ category.get_absolute_url }}"
+                           class="list-group-item">{{ category }}</a>
+                    {% endfor %}
                 </div>
             </div>
-            {% endfor %}
-        </section>
+            <div class="col-md-8 col-lg-9">
+                <h3 class="m-4 fw-light">Список тестов: </h3>
+                <div class="row g-3">
+                    {% for quiz in quizes %}
+                        <div class="col-md-6 col-lg-4 ">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Категория: {{ quiz.category }}</h5>
+                                    <p class="card-text">Название теста: {{ quiz.name }}</p>
+                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+    {#<div class="container mt-3 pt-3">#}
+    {#    <div class="col-md-12 mx-auto">#}
+    {#        <section>#}
+    {#            <h4 class="fw-light">Список тестов: </h4>#}
+    {#            {% for quiz in quizes %}#}
+    {#            <br>#}
+    {#            <div class="card text-center">#}
+    {#                <div class="card-header">#}
+    {#                </div>#}
+    {#                <div class="card-body">#}
+    {#                    <h4 class="card-title mt-1 pt-1 fw-light">Категория: {{ quiz.category }}</h4>#}
+    {#                    <h4 class="card-title mt-1 pt-1 fw-light">Название теста: {{ quiz.name }}</h4>#}
+    {#                    <a href="{% url 'quiz' quiz.pk %}" class="btn btn-primary mt-1 pt-1">Перейти к тесту</a>#}
+    {#                </div>#}
+    {#                <div class="card-footer text-muted">#}
+    {#                </div>#}
+    {#            </div>#}
+    {#            {% endfor %}#}
+    {#        </section>#}
+    {#    </div>#}
+    {#</div>#}
 {% endblock content %}

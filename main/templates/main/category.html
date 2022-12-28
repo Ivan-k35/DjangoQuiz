@@ -20,74 +20,33 @@
             <div class="col-md-4 col-lg-3">
                 <h3 class="my-4 fw-light">Категории тестов</h3>
                 <div class="list-group">
-                    <a href="{% url 'category' %}" class="list-group-item">Все категории</a>
+                    <a href="{% url 'main:category' %}" class="list-group-item link active">Все категории</a>
                     {% for category in categories %}
-                        <a href="{% url 'quiz-list' category.pk %}"
+                        <a href="{{ category.get_absolute_url }}"
                            class="list-group-item">{{ category }}</a>
                     {% endfor %}
                 </div>
-            </div>
-            <div class="col-md-8 col-lg-9">
-                <div class="row">
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card my-4">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of
-                                    the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
+                {% block content_category %}
+                    </div>
+                    <div class="col-md-8 col-lg-9">
+                        <h3 class="mt-4 fw-light">Список тестов: </h3>
+                        <div class="row g-3">
+                            {% for category in categories %}
+                                <div class="my-3 col-md-6 col-lg-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Категория: {{ quiz.category }}</h5>
+                                            <p class="card-text">Название теста: {{ quiz.name }}</p>
+                                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card my-4">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of
-                                    the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
                     </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card my-4">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of
-                                    the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
                     </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card my-4">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of
-                                    the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card my-4">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of
-                                    the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                {% endblock content_category %}
     {#            <div class="col-lg-9">#}
     {#                <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel"></div>#}
     {#                <div class="row">#}
