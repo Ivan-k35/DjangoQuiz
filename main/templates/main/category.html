@@ -1,12 +1,9 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Категории тестов
+    {{ title }}
 {% endblock title %}
 
-{% block nav-link-home %}
-    class="nav-link"
-{% endblock %}
 
 {% block nav-link-category %}
     class="nav-link active"
@@ -31,7 +28,7 @@
                     <div class="col-md-8 col-lg-9">
                         <h3 class="mt-4 fw-light">Список тестов: </h3>
                         <div class="row g-3">
-                            {% for category in categories %}
+                            {% for quiz in quizes %}
                                 <div class="my-3 col-md-6 col-lg-4">
                                     <div class="card">
                                         <div class="card-body">

@@ -16,22 +16,36 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container">
-    <!-- <a class="navbar-brand" href="#">Navbar</a> -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a {% block nav-link-home %}class="nav-link"{% endblock %} aria-current="page" href="{% url 'main:home' %}">Главная страница</a>
-        </li>
-        <li class="nav-item">
-          <a {% block nav-link-category %}class="nav-link"{% endblock %} href="{% url 'main:category' %}">Тестирование</a>
-        </li>
-      </ul>
+    <div class="container">
+        <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a {% block nav-link-home %}class="nav-link"{% endblock %} aria-current="page"
+                       href="{% url 'main:home' %}">Главная страница</a>
+                </li>
+                <li class="nav-item">
+                    <a {% block nav-link-category %}class="nav-link"{% endblock %}
+                       href="{% url 'main:category' %}">Тестирование</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item">
+                    <a {% block nav-link-register %}class="nav-link"{% endblock %}
+                       href={% url 'main:register' %}>Sign Up</a></li>
+                <li class="nav-item">
+                    <a {% block nav-link-login %}class="nav-link"{% endblock %}
+                       href={% url 'main:login' %}>Login</a>
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
 </nav>
 {% block content %}{% endblock %}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

@@ -2,11 +2,19 @@ from django.shortcuts import render, redirect
 from .models import Category, Quiz
 from django.views.generic import ListView
 from django.shortcuts import get_object_or_404
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 
 
 def index(request):
     return render(request, 'main/index.html', {'title': 'Главная страница'})
+
+
+def register(request):
+    return render(request, 'main/register.html', {'title': 'register'})
+
+
+def login(request):
+    return render(request, 'main/login.html', {'title': 'login'})
 
 
 class CategoryListView(ListView):
@@ -15,13 +23,24 @@ class CategoryListView(ListView):
     context_object_name = 'categories'
     allow_empty = False
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Категории тестов'
+        context['cat_selected'] = 0
+        return context
 
 
 class QuizListView(ListView):
     model = Quiz
-    template_name = 'main/quiz_list.html'
+    template_name = 'main/category.html'
     context_object_name = 'quizes'
     allow_empty = False
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Список тестов по выбраноой категории'
+        context['cat_selected'] = self.kwargs['pk']
+        return context
 
     def get_queryset(self):
         return Quiz.objects.filter(category_id=self.kwargs['pk'])

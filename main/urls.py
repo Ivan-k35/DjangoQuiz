@@ -7,6 +7,8 @@ app_name = 'main'
 
 urlpatterns = [
     path('', views.index, name='home'),
+    path('login/', views.login, name='login'),
+    path('register/', views.register, name='register'),
     path('category/', views.CategoryListView.as_view(), name='category'),
     path('category/<int:pk>/', views.QuizListView.as_view(), name='quiz-list'),
     path('quiz/<int:pk>/', views.quiz_view, name='quiz'),
