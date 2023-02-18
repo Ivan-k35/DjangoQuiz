@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 from django.http import JsonResponse, HttpResponse
 from django.urls import reverse_lazy
 from .models import Category, Quiz
-from .forms import CustomUserUserForm
+from .forms import CustomUserForm
 
 
 def index(request):
@@ -12,7 +12,7 @@ def index(request):
 
 
 class RegisterUser(CreateView):
-    form_class = CustomUserUserForm
+    form_class = CustomUserForm
     template_name = 'main/register.html'
     success_url = reverse_lazy('main:login')
 

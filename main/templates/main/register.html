@@ -19,19 +19,19 @@
                     {% csrf_token %}
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa fa-user"></i></span>
-                        <input type="text" class="form-control" placeholder="Name">
+                        {{ form.username }}
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                        <input type="text" class="form-control" placeholder="Email">
+                        {{ form.email }}
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                        <input type="text" class="form-control" placeholder="Password">
+                        {{ form.password1 }}
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                        <input type="text" class="form-control" placeholder="Confirm Password">
+                        {{ form.password2 }}
                     </div>
                     <div class="d-grid">
                         <button class="btn btn-success">Зарегистрироваться</button>
