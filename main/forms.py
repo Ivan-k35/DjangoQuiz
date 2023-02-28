@@ -1,6 +1,5 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.models import User
 
 
 class RegisterUserForm(UserCreationForm):
@@ -20,9 +19,9 @@ class RegisterUserForm(UserCreationForm):
         )
     )
     password2 = forms.CharField(
-        widget=forms.PasswordInput
-        (attrs={'placeholder': 'Повтор пароля', 'class': 'form-control'}
-         )
+        widget=forms.PasswordInput(
+            attrs={'placeholder': 'Повтор пароля', 'class': 'form-control'}
+        )
     )
 
 
