@@ -1,26 +1,84 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Категории тестов
+    {{ title }}
 {% endblock title %}
 
+
+{% block nav-link-category %}
+    class="nav-link active"
+{% endblock %}
+
+
 {% block content %}
-<div class="container mt-5 pt-5">
-    <div class="col-md-6 mx-auto">
-        <form>
-            <div class="form-group">
-                <h5>
-                    <lebel>Выберите категорию:</lebel>
-                </h5>
-                <select name="category" class="form-control mt-2">
-                    <option value="Choose">Choose</option>
+    <div class="container">
+        {#        {% if user.is_authenticated %}#}
+        <div class="row">
+            <div class="col-md-4 col-lg-3">
+                <h3 class="my-4 fw-light">Категории тестов</h3>
+                <div class="list-group">
+                    <a href="{% url 'main:category' %}" class="list-group-item link active">Все категории</a>
                     {% for category in categories %}
-                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                        <a href="{{ category.get_absolute_url }}"
+                           class="list-group-item">{{ category }}</a>
                     {% endfor %}
-                </select>
-            </div>
-            <button class="btn btn-primary mt-3">Выбрать данную категорию</button>
-        </form>
-    </div>
-</div>
+                </div>
+                {% block content_category %}
+                    </div>
+                    <div class="col-md-8 col-lg-9">
+                        <h3 class="mt-4 fw-light">Список тестов: </h3>
+                        <div class="row g-3">
+                            {% for quiz in quizes %}
+                                <div class="my-3 col-md-6 col-lg-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Категория: {{ quiz.category }}</h5>
+                                            <p class="card-text">Название теста: {{ quiz.name }}</p>
+                                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                {% endblock content_category %}
+    {#            <div class="col-lg-9">#}
+    {#                <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel"></div>#}
+    {#                <div class="row">#}
+    {#                        {% if tests %}#}
+    {#                            {% for test in tests %}#}
+    {#                                <div class="col-lg-4 col-md-6 mb-4">#}
+    {#                                    <div class="card h-100">#}
+    {#                                        <div class="card-body">#}
+    {#                                            <h4 class="card-title">#}
+    {#                                                <a href="{% url 'quizapp:test' test.pk %}">{{ test.title }}</a>#}
+    {#                                            </h4>#}
+    {#                                            <p class="card-text">{{ test.description }}</p>#}
+    {#                                        </div>#}
+    {#                                    </div>#}
+    {#                                </div>#}
+    {#                            {% endfor %}#}
+    {#                        {% else %}#}
+    {#                            <h4 class="card-title" style="color: red">#}
+    {#                                В данной катеогрии нет тестов#}
+    {#                            </h4>#}
+    {#                        {% endif %}#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#        {% else %}#}
+    {#            <div class="text-center">#}
+    {#                <div class="card h-100">#}
+    {#                    <div class="card-body">#}
+    {#                        <h4 class="card-title">#}
+    {#                            Вы не авторизованы#}
+    {#                        </h4>#}
+    {#                        <a class="nav-link" href="{% url 'login' %}">Войти?</a>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        {% endif %}#}
+
 {% endblock content %}

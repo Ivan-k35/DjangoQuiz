@@ -1,12 +1,40 @@
 from django.shortcuts import render, redirect
-from .models import Category, Quiz
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
+from django.contrib.auth.views import LoginView
 from django.shortcuts import get_object_or_404
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
+from django.urls import reverse_lazy
+from .models import Category, Quiz
+from .forms import RegisterUserForm, LoginUserForm
 
 
 def index(request):
     return render(request, 'main/index.html', {'title': 'Главная страница'})
+
+
+class RegisterUser(CreateView):
+    form_class = RegisterUserForm
+    template_name = 'main/register.html'
+    success_url = reverse_lazy('main:login')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Регистрация'
+        return context
+
+
+class LoginUser(LoginView):
+    form_class = LoginUserForm
+    template_name = 'main/login.html'
+    success_url = reverse_lazy('main:home')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Войти'
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('main:home')
 
 
 class CategoryListView(ListView):
@@ -15,20 +43,27 @@ class CategoryListView(ListView):
     context_object_name = 'categories'
     allow_empty = False
 
-    def get(self, *args, **kwargs):
-        if self.request.GET.get('category') and self.request.GET.get('category') != 'Choose':
-            return redirect(f"/quiz/?category={self.request.GET.get('category')}")
-        return super(CategoryListView, self).get(*args, **kwargs)
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Категории тестов'
+        context['cat_selected'] = 0
+        return context
 
 
 class QuizListView(ListView):
     model = Quiz
-    template_name = 'main/quiz_list.html'
+    template_name = 'main/category.html'
     context_object_name = 'quizes'
     allow_empty = False
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Список тестов по выбраноой категории'
+        context['cat_selected'] = self.kwargs['pk']
+        return context
+
     def get_queryset(self):
-        return Quiz.objects.filter(category__category_name=self.request.GET.get('category'))
+        return Quiz.objects.filter(category_id=self.kwargs['pk'])
 
 
 def quiz_view(request, pk):

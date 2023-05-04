@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ title }}
+{% endblock title %}
+
+{% block nav-link-register %}
+    class="nav-link active"
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-lg-4 bg-white m-auto rounded-top wrapper">
+                <h2 class="text-center pt-3">{{ title }}</h2>
+                <p class="text-center text-muted lead mb-3">Зарегистрируйтесь бесплатно</p>
+                <!-- Form start -->
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                        {{ form.username }}
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                        {{ form.email }}
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                        {{ form.password1 }}
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                        {{ form.password2 }}
+                    </div>
+                    <div class="d-grid">
+                        <button class="btn btn-success">Зарегистрироваться</button>
+                        <p class="text-center text-muted mt-2">Нажимая "Зарегистрироваться", вы принимаете
+                            <a href="#">пользовательское сограшение</a>
+                            и <a href="#">политику конфидиальности</a></p>
+                        <p class="text-center text-muted">Уже зарегистрированы?
+                            <a href="{% url 'main:login' %} ">Войти в аккаунт</a></p>
+                    </div>
+                </form>
+                <!-- Form close -->
+            </div>
+        </div>
+    </div>
+{% endblock content %}
